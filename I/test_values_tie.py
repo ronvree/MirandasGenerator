@@ -24,6 +24,7 @@ class Tie:
         # Set initial state
         s = State(width, self.values)
         s.set(mid, rnd.choice(self.values[1:]))
+        s.randomize()
 
         # Generate pattern
         self.states = list()
@@ -69,9 +70,9 @@ class Tie:
 
 # Make tie
 
-ties = 100
+ties = 20
 
 for i in range(ties):
-    tie = Tie(200, 3)
-    tie.save("ties/tie" + str(i) + ".png")
+    tie = Tie(200, 4)
+    tie.save("ties_demo/tie" + str(i) + ".png")
 
