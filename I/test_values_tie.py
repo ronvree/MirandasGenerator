@@ -43,7 +43,7 @@ class Tie:
 
         self.states.reverse()
 
-        slope = int(length/6)
+        slope = int(length/10)
         bottom_part_length = int(length / slope)
 
         bottom_layers = range(length - bottom_part_length, length)
@@ -69,6 +69,9 @@ class Tie:
 
 # Make tie
 
-tie = Tie(200, 3)
-tie.save("tie.png")
+ties = 100
+
+for i in range(ties):
+    tie = Tie(200, 3)
+    tie.save("ties/tie" + str(i) + ".png")
 
