@@ -1,8 +1,9 @@
 from I.elementary_automata_values import Rule, State
 from PIL import Image
+import random as rnd
 
 values = range(4)
-size = 1000
+size = 400
 
 r = Rule(values)
 r.randomize()
@@ -25,11 +26,10 @@ for i in range(iterations):
 
 # Visualize states
 
-color_map = [0] * len(values)
-color_map[0] = (255, 255, 255)
-color_map[1] = (255, 0, 0)
-color_map[2] = (0, 255, 0)
-color_map[3] = (0, 0, 255)
+color_map = list()
+rgb_range = range(256)
+for i in values:
+    color_map.append((rnd.choice(rgb_range), rnd.choice(rgb_range), rnd.choice(rgb_range)))
 
 img = Image.new('RGB', (size, iterations), 'black')
 pixels = img.load()

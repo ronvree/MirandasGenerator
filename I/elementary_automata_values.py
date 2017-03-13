@@ -35,7 +35,7 @@ class State:
 
 class Rule:
 
-    def __init__(self, values, n=0):
+    def __init__(self, values, n=0): # TODO -- rule seed
         self.substitution_system = dict()
         self.values = values
         for x in self.values:

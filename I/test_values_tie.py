@@ -34,7 +34,8 @@ class Tie:
 
         # Determine colors
         color_map = [0] * len(self.values)
-        rgb = range(255)
+
+        rgb = range(256)
         for value in self.values:
             color_map[value] = (rnd.choice(rgb), rnd.choice(rgb), rnd.choice(rgb))
 
@@ -70,7 +71,7 @@ class Tie:
 
 # Make tie
 
-ties = 20
+ties = 200
 
 for i in range(ties):
     tie = Tie(200, 4)
