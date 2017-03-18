@@ -27,7 +27,7 @@ class State:
     def get(self, i):
         return self.cells[i]
 
-    def set(self, i, val):
+    def set(self, i, val):  # TODO -- error if val is not in self.values
         self.cells[i] = val
 
 
@@ -137,29 +137,10 @@ class Tie:
         self.states.reverse()
         return img
 
-    def set_colors(self, colors):               # TODO -- error
+    def set_colors(self, colors):
         if len(colors) == len(self.colors):
             self.colors = colors
-
-
-colors = list()
-for c in range(4):
-    colors.append((random.choice(range(256)), random.choice(range(256)), random.choice(range(256))))
-
-init_state_seed = int(random.getrandbits(2048))
-rule_seed = int(random.getrandbits(2048))
-
-print(init_state_seed)
-print(rule_seed)
-
-# tie = Tie(200, 50, colors, 'random')
-tie = Tie(200, 50, colors, (init_state_seed, rule_seed))
-
-image = tie.get_pattern_image()
-
-image.save("result.png")
-
-
-
-
+        else:
+            print("Number of colors does not match!")
+            raise Exception()
 
