@@ -1,5 +1,6 @@
-from I.tie import Tie
 import random
+
+from I.ties.tie import Tie
 
 
 class TestTie(Tie):

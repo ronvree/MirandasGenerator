@@ -135,6 +135,7 @@ class Tie:
             counter += 1
 
         self.states.reverse()
+
         return img
 
     def set_colors(self, colors):

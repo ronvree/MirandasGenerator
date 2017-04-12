@@ -74,13 +74,25 @@ class Rule:
 
 
 class Shirt:
-    def __init__(self):
-        Shirt()
-        # TODO
+    def __init__(self, width, height, values, seed, iterations=100, neighbourhood='wolfram'):
+        self.width = width
+        self.height = height
+        self.values = values
+        self.state = State(width, height, values, seed[0])
+        self.rule = Rule(values, seed[1], neighbourhood)
+
+        for i in range(iterations):
+            self.state = self.rule.next(self.state)
+
+    def get_image(self): # TODO -- shape shirt
+        img = Image.new('RGB', (self.width, self.height), 'grey')
+        pixels = img.load()
+        for x in range(self.width):
+            for y in range(self.height):
+                pixels[x, y] = self.state.get(x,y)
+        return img
 
 ########################
-
-
 
 def random_rgb_color():
     return random.choice(range(256)), random.choice(range(256)), random.choice(range(256))
@@ -90,8 +102,8 @@ def random_rgb_colors(n):
     return [random_rgb_color() for _ in range(n)]
 
 
-nr_of_colors = 5
-iterations = 20
+nr_of_colors = 2
+iterations = 50
 colors = random_rgb_colors(nr_of_colors)
 # colors = [(255,255,255),(0,0,0)]
 
