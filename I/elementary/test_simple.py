@@ -1,3 +1,5 @@
+import copy
+import os
 from PIL import Image
 
 from I.elementary.automata_simple import Rule, State
@@ -27,14 +29,21 @@ class AutomatonRun:
                     pixels[x, y] = (255, 255, 255)
         return img
 
-r = Rule(90)
 
-size = 140
-s = State(size)
-s.set(int((len(s) - 1)/2), True)
+def generate_all_patterns(size):
+    init_state = State(size)
+    init_state.set(int((len(init_state) - 1) / 2), True)
 
-run = AutomatonRun(r, s, int(size/2))
+    for rule_index in range(pow(2, 8)):
+        run = AutomatonRun(Rule(rule_index), copy.deepcopy(init_state), int(size / 2))
+        run.get_image().save(os.getcwd() + "\patterns\pattern{}.png".format(rule_index))
 
-print(r)
-run.get_image().save("test.png")
+
+def show_pattern_of_rule(index):
+    size = 1000
+    iterations = int(size / 2)
+    init_state = State(size)
+    init_state.set(int((len(init_state) - 1) / 2), True)
+    run = AutomatonRun(Rule(index), init_state, iterations)
+    run.get_image().show()
 
